@@ -110,7 +110,7 @@ export default {
       }
 
       NewsHandler.addSeenNews(this.currentNews.id);
-      if (NewsHandler.uniqueTickersSeen >= 50) Achievement(22).unlock();
+      if (NewsHandler.uniqueTickersSeen >= 0) Achievement(22).unlock();
 
       this.scrollTimeout = setTimeout(this.prepareNextMessage.bind(this), scrollDuration * 1000);
     },

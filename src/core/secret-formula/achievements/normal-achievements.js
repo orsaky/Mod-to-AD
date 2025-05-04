@@ -166,7 +166,7 @@ export const normalAchievements = [
         ? `Be offline for a period of over ${formatInt(6)} hours (real time).`
         : `Be offline for a period of over ${formatInt(6)} hours.`;
     },
-    checkRequirement: () => Date.now() - player.lastUpdate >= 21600000,
+    checkRequirement: () => Date.now() - player.lastUpdate >= 1000,
     checkEvent: GAME_EVENT.GAME_TICK_BEFORE
   },
   {
@@ -506,10 +506,10 @@ export const normalAchievements = [
     id: 76,
     name: "One for each dimension",
     get description() { return `Play for ${formatInt(8)} days.`; },
-    checkRequirement: () => Time.totalTimePlayed.totalDays >= 8,
+    checkRequirement: () => Time.totalTimePlayed.totalDays >= 0,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     reward: "Extremely small multiplier to Antimatter Dimensions based on time played.",
-    effect: () => Math.max(Math.pow(Time.totalTimePlayed.totalDays / 2, 0.05), 1),
+    effect: () => Math.max(Math.pow((Time.totalTimePlayed.totalDays+8) / 2, 0.05), 1),
     formatEffect: value => `${formatX(value, 2, 2)}`
   },
   {
