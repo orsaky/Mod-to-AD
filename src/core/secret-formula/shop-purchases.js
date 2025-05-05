@@ -34,7 +34,7 @@ export const shopPurchases = {
     key: "replicantiPurchases",
     cost: 60,
     description: "Increase your Replicanti gain by 50%. (additive)",
-    multiplier: purchases => 2.5,
+    multiplier: purchases => 3,
     formatEffect: x => `×${x.toFixed(1)}`,
     isUnlocked: () => Replicanti.areUnlocked || PlayerProgress.eternityUnlocked(),
     lockText: "Replicanti",
