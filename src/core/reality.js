@@ -129,7 +129,7 @@ export function simulatedRealityCount(advancePartSimCounters) {
   if (advancePartSimCounters) {
     player.partSimulatedReality = simCount - Math.floor(simCount);
   }
-  return Math.floor(simCount);
+  return Math.floor(simCount)+1;
 }
 
 /**
@@ -300,7 +300,7 @@ function updateRealityRecords(realityProps) {
 
 function giveRealityRewards(realityProps) {
   const multiplier = realityProps.simulatedRealities + 1;
-  const realityAndPPMultiplier = (multiplier + binomialDistribution(multiplier, Achievement(154).effectOrDefault(0)))*2;
+  const realityAndPPMultiplier = (multiplier + binomialDistribution(multiplier, Achievement(154).effectOrDefault(0)));
   const gainedRM = Currency.realityMachines.gte(MachineHandler.hardcapRM) ? DC.D0 : realityProps.gainedRM;
   Currency.realityMachines.add(gainedRM.times(multiplier));
   updateRealityRecords(realityProps);
