@@ -325,7 +325,7 @@ export const alchemyResources = {
     name: "Uncountability",
     symbol: "Θ",
     isBaseResource: false,
-    effect: amount => 160 * Math.sqrt(amount / 25000),
+    effect: amount => 160 * Math.sqrt(amount / 25000) * 4,
     tier: 4,
     uiOrder: 3,
     unlockedAt: 19,
