@@ -94,7 +94,7 @@ export const GlyphGenerator = {
   /* eslint-enable lines-between-class-members */
 
   startingGlyph(level) {
-    const initialStrength = 1.5;
+    const initialStrength = 2;
     return {
       id: undefined,
       idx: null,
@@ -226,7 +226,7 @@ export const GlyphGenerator = {
     const increasedRarity = relicShardFactor * Effarig.maxRarityBoost +
       Effects.sum(Achievement(146), GlyphSacrifice.effarig);
     // Each rarity% is 0.025 strength.
-    result += increasedRarity / 40;
+    result += (increasedRarity+25) / 40;
     // Raise the result to the next-highest 0.1% rarity.
     result = Math.ceil(result * 400) / 400;
     return Math.min(result, rarityToStrength(100));

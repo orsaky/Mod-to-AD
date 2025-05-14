@@ -129,7 +129,7 @@ export function simulatedRealityCount(advancePartSimCounters) {
   if (advancePartSimCounters) {
     player.partSimulatedReality = simCount - Math.floor(simCount);
   }
-  return Math.floor(simCount)+1;
+  return (Math.floor(simCount)*2)+1;
 }
 
 /**

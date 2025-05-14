@@ -61,7 +61,7 @@ export const shopPurchases = {
     key: "RMPurchases",
     cost: 60,
     description: "Increase your Reality Machine gain by 100%. (additive)",
-    multiplier: purchases => 2,
+    multiplier: purchases => 3,
     formatEffect: x => `×${x.toFixed(0)}`,
     isUnlocked: () => PlayerProgress.realityUnlocked(),
     lockText: "Reality",
