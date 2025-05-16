@@ -58,7 +58,7 @@ export const eternityUpgrades = {
       ? "Time Dimensions are multiplied by days played in this Armageddon"
       : "Time Dimensions are multiplied by days played"
     ),
-    effect: () => (Pelle.isDoomed ? 1 + Time.thisReality.totalDays : Math.max(Time.totalTimePlayed.totalDays, 1)),
+    effect: () => (Pelle.isDoomed ? 1 + Time.thisReality.totalDays : Math.max(Time.totalTimePlayed.totalDays+8, 1)),
     formatEffect: value => formatX(value, 2, 1)
   }
 };
