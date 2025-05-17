@@ -132,6 +132,10 @@ export default {
   background-color: var(--color-reality);
 }
 
+.subtabs {
+  margin-left: -1px; /* Adjust this value as needed */
+}
+
 .o-tab-btn--celestial::before {
   background-color: var(--color-celestials);
 }

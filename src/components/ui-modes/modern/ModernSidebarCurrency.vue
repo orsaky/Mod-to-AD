@@ -56,11 +56,7 @@ export default {
 </script>
 
 <template>
-  <div
-    :class="containerClass()"
-    @click.exact="cycleResource(1)"
-    @click.shift.exact="cycleResource(-1)"
-  >
+  <div :class="containerClass()">
     <h2
       :class="resource.formatClass"
       :style="styleObject()"
@@ -83,13 +79,13 @@ export default {
   align-items: center;
   background-color: var(--color-base);
   border-right: 0.1rem solid var(--color-accent);
-  border-bottom: 0.1rem solid var(--color-accent);
+  border-bottom: 0.5rem solid var(--color-accent);
   padding: 1rem;
   user-select: none;
 }
 
 .c-sidebar-resource-default {
-  border-width: 0.3rem;
+  border-bottom: 0.5rem solid var(--color-accent);
 }
 
 .c-sidebar-resource:last-child {
