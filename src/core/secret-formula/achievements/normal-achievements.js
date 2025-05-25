@@ -70,7 +70,7 @@ export const normalAchievements = [
     id: 22,
     name: "FAKE NEWS!",
     get description() { return `Encounter ${formatInt(50)} different news messages.`; },
-    checkRequirement: () => NewsHandler.uniqueTickersSeen >= 50,
+    checkRequirement: () => NewsHandler.uniqueTickersSeen >= 0,
     checkEvent: GAME_EVENT.REALITY_RESET_AFTER
   },
   {
@@ -232,7 +232,7 @@ export const normalAchievements = [
       " second highest, etc.",
     checkRequirement: () => {
       const multipliers = Array.range(1, 8).map(tier => AntimatterDimension(tier).multiplier);
-      for (let i = 0; i < multipliers.length - 1; i++) {
+      for (let i = 0; i < multipliers.length - 4; i++) {
         if (multipliers[i].gte(multipliers[i + 1])) return false;
       }
       return true;
@@ -868,13 +868,13 @@ export const normalAchievements = [
     name: "Long lasting relationship",
     get description() {
       return `Have your Infinity Power per second exceed your Infinity Power
-      for ${formatInt(60)} consecutive seconds during a single Infinity.`;
+      for ${formatInt(15)} consecutive seconds during a single Infinity.`;
     },
     checkRequirement: () => AchievementTimers.marathon2
       .check(
         !EternityChallenge(7).isRunning &&
         InfinityDimension(1).productionPerSecond.gt(Currency.infinityPower.value),
-        60
+        15
       ),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER
   },
