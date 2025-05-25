@@ -364,6 +364,9 @@ export function getGameSpeedupFactor(effectsToConsider, blackHolesActiveOverride
     }
   }
 
+  if(player.records.fullGameCompletions > 0){
+    factor *= Math.pow(1.1, player.records.fullGameCompletions);
+  }
 
   factor *= PelleUpgrade.timeSpeedMult.effectValue.toNumber();
 
