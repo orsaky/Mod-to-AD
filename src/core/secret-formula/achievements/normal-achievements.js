@@ -785,7 +785,7 @@ export const normalAchievements = [
     id: 113,
     name: "Eternities are the new infinity",
     get description() { return `Eternity in under ${formatInt(250)}ms.`; },
-    checkRequirement: () => Time.thisEternity.totalMilliseconds <= 250,
+    checkRequirement: () => Time.thisEternity.totalMilliseconds <= 500,
     checkEvent: GAME_EVENT.ETERNITY_RESET_BEFORE,
     get reward() { return `Gain ${formatX(2)} more Eternities.`; },
     effect: 2,

@@ -237,7 +237,8 @@ export function gainedEternities() {
     ? new Decimal(1)
     : new Decimal(getAdjustedGlyphEffect("timeetermult"))
       .timesEffectsOf(RealityUpgrade(3), Achievement(113))
-      .pow(AlchemyResource.eternity.effectValue).times(3);
+      .pow(AlchemyResource.eternity.effectValue).times(3)
+      .times(Math.pow(1.1, player.records.fullGameCompletions));
 }
 
 export class EternityMilestoneState {

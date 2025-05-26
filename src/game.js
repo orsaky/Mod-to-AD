@@ -281,7 +281,7 @@ export function gainedInfinities() {
     Achievement(131).effects.infinitiesGain,
     Achievement(164),
     Ra.unlocks.continuousTTBoost.effects.infinity
-  ).times(3);
+  ).times(3).times(Math.pow(1.1, player.records.fullGameCompletions));
   infGain = infGain.times(getAdjustedGlyphEffect("infinityinfmult"));
   infGain = infGain.powEffectOf(SingularityMilestone.infinitiedPow);
   return infGain;
