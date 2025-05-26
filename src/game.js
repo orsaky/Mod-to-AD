@@ -286,6 +286,7 @@ export function gainedInfinities() {
   infGain = infGain.powEffectOf(SingularityMilestone.infinitiedPow);
   infGain = infGain.ceil();
   return infGain;
+  
 }
 
 export function updateRefresh() {
