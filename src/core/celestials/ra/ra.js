@@ -124,7 +124,7 @@ class RaPetState extends GameMechanicState {
   get memoryChunksPerSecond() {
     if (!this.canGetMemoryChunks) return 0;
     let res = this.rawMemoryChunksPerSecond * this.chunkUpgradeCurrentMult *
-      Effects.product(Ra.unlocks.continuousTTBoost.effects.memoryChunks, GlyphSacrifice.reality) * 3;
+      Effects.product(Ra.unlocks.continuousTTBoost.effects.memoryChunks, GlyphSacrifice.reality) * 3 * Math.pow(1.1, player.records.fullGameCompletions);
     if (this.hasRemembrance) res *= Ra.remembrance.multiplier;
     else if (Ra.petWithRemembrance) res *= Ra.remembrance.nerf;
     return res;
@@ -377,7 +377,7 @@ export const Ra = {
   },
   get momentumValue() {
     const hoursFromUnlock = TimeSpan.fromMilliseconds(player.celestials.ra.momentumTime).totalHours;
-    return Math.clampMax(1 + 0.005 * hoursFromUnlock, AlchemyResource.momentum.effectValue);
+    return Math.clampMax(1 + (0.005*Math.pow(1.1, player.records.fullGameCompletions)*2)  * hoursFromUnlock, AlchemyResource.momentum.effectValue);
   },
   quotes: Quotes.ra,
   symbol: "<i class='fas fa-sun'></i>"

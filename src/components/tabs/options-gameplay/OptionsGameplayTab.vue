@@ -23,6 +23,7 @@ export default {
       infinityUnlocked: false,
       automatorUnlocked: false,
       automatorLogSize: 0,
+      completionGameSpeed: false,
     };
   },
   computed: {
@@ -64,6 +65,9 @@ export default {
     automatorLogSize(newValue) {
       player.options.automatorEvents.maxEntries = parseInt(newValue, 10);
     },
+      completionGameSpeed(newValue) {
+      player.options.completionGameSpeed = newValue;
+    },
   },
   // This puts the slider in the right spot on initialization
   created() {
@@ -83,6 +87,7 @@ export default {
       this.infinityUnlocked = PlayerProgress.current.isInfinityUnlocked;
       this.automatorUnlocked = Player.automatorUnlocked;
       this.automatorLogSize = options.automatorEvents.maxEntries;
+      this.completionGameSpeed = options.completionGameSpeed;
     },
     // Given the endpoints of 22-54, this produces 500, 600, ... , 900, 1000, 2000, ... , 1e6 ticks
     // It's essentially 10^(x/10) but with the mantissa spaced linearly instead of logarithmically
@@ -159,6 +164,15 @@ export default {
             @input="adjustSliderValueAutomatorLogSize($event)"
           />
         </div>
+      </div>
+      <div class="l-options-grid__row">
+        <PrimaryToggleButton
+          v-model="completionGameSpeed"
+          class="o-primary-btn--option l-options-grid__button"
+          label="Toggle Completion Gamespeed:"
+          on="On"
+          off="Off"
+        />
       </div>
       <OpenModalHotkeysButton />
     </div>

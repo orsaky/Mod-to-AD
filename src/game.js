@@ -364,7 +364,7 @@ export function getGameSpeedupFactor(effectsToConsider, blackHolesActiveOverride
     }
   }
 
-  if(player.records.fullGameCompletions > 0){
+  if(player.records.fullGameCompletions > 0 && player.options.completionGameSpeed){
     factor *= Math.pow(1.1, player.records.fullGameCompletions);
   }
 

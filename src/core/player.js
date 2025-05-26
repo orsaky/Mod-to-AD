@@ -794,6 +794,7 @@ window.player = {
     offlineProgress: true,
     loadBackupWithoutOffline: false,
     automaticTabSwitching: true,
+    completionGameSpeed: false,
     respecIntoProtected: false,
     offlineTicks: 1e5,
     hibernationCatchup: true,
