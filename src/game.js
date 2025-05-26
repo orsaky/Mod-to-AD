@@ -273,7 +273,7 @@ export function gainedInfinities() {
     1,
     Achievement(87)
   ).toDecimal();
-  infGain += player.records.fullGameCompletions;
+  infGain = infGain.add(player.records.fullGameCompletions);
   infGain = infGain.timesEffectsOf(
     TimeStudy(32),
     RealityUpgrade(5),
