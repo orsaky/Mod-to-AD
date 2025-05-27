@@ -763,15 +763,8 @@ export const normalAchievements = [
       return `Have all your Infinities in your past ${formatInt(10)} Infinities be at least
       ${format(Decimal.NUMBER_MAX_VALUE, 1, 0)} times higher Infinity Points than the previous one.`;
     },
-    checkRequirement: () => {
-      if (player.records.recentInfinities.some(i => i[0] === Number.MAX_VALUE)) return false;
-      const infinities = player.records.recentInfinities.map(run => run[2]);
-      for (let i = 0; i < infinities.length - 1; i++) {
-        if (infinities[i].lt(infinities[i + 1].times(Decimal.NUMBER_MAX_VALUE))) return false;
-      }
-      return true;
-    },
-    checkEvent: GAME_EVENT.BIG_CRUNCH_AFTER,
+    checkRequirement: () => Currency.infinityPoints.exponent >= 3000,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     reward: "Your antimatter doesn't reset on Dimension Boosts or Antimatter Galaxies."
   },
   {
