@@ -1050,15 +1050,8 @@ export const normalAchievements = [
       return `Have all your Eternities in your past ${formatInt(10)} Eternities be at least
       ${format(Decimal.NUMBER_MAX_VALUE, 1, 0)} times higher Eternity Points than the previous one.`;
     },
-    checkRequirement: () => {
-      if (player.records.recentEternities.some(i => i[0] === Number.MAX_VALUE)) return false;
-      const eternities = player.records.recentEternities.map(run => run[2]);
-      for (let i = 0; i < eternities.length - 1; i++) {
-        if (eternities[i].lt(eternities[i + 1].times(Decimal.NUMBER_MAX_VALUE))) return false;
-      }
-      return true;
-    },
-    checkEvent: GAME_EVENT.ETERNITY_RESET_AFTER,
+    checkRequirement: () => Currency.eternityPoints.exponent >= 4000,
+    checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     reward: "Galaxies no longer reset Dimension Boosts."
   },
   {
