@@ -242,7 +242,7 @@ export const GlyphGenerator = {
     const maxEffects = Ra.unlocks.glyphEffectCount.canBeApplied ? 7 : 4;
     let num = Math.min(
       maxEffects,
-      Math.floor(Math.pow(random1, 1 - (Math.pow(level * strength, 0.5)) / 100) * 1.5 + 1)
+      Math.floor(Math.pow(random1, 1 - (Math.pow(level * strength, 0.5)) / 100) * 1.5 + 1)+1
     );
     // If we do decide to add anything else that boosts chance of an extra effect, keeping the code like this
     // makes it easier to do (add it to the Effects.max).
