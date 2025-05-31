@@ -132,7 +132,7 @@ function totalEPMult() {
         TimeStudy(123),
         RealityUpgrade(12),
         GlyphEffect.epMult
-      );
+      ).times(Math.pow(1.1, player.records.fullGameCompletions));
 }
 
 export function gainedEternityPoints() {
