@@ -122,6 +122,33 @@ export default {
       }
       throw "Unknown Time Study type";
     },
+    async autoImportTree()  {
+      try {
+        const text = await navigator.clipboard.readText();
+        //const text = "11,22,32,42,51,61,73,83,93,103,111,121,131,141,151,161,171|2!";
+        const cleanText = TimeStudyTree.truncateInput(text);
+        
+        if (!TimeStudyTree.isValidImportString(cleanText)) {
+          GameUI.notify.error("Clipboard doesn't contain a valid Time Study tree.");
+          return;
+        }
+        const tree = new TimeStudyTree(cleanText);
+
+        if (Player.canEternity) {
+          player.respec = true;
+          animateAndEternity(() => {
+            TimeStudyTree.commitToGameState(tree.purchasedStudies, false, tree.startEC);
+          });
+          GameUI.notify.info("Imported study tree from clipboard with respec + eternity.");
+        } else {
+          TimeStudyTree.commitToGameState(tree.purchasedStudies, false, tree.startEC);
+          GameUI.notify.info("Imported study tree from clipboard (no eternity).");
+        }
+      } catch (err) {
+        GameUI.notify.error("Failed to auto-import from clipboard.");
+        console.error("Auto-import error:", err);
+      }
+    },
     exportStudyTree() {
       if (player.timestudy.studies.length === 0) {
         GameUI.notify.error("You cannot export an empty Time Study Tree!");
@@ -154,6 +181,12 @@ export default {
         onclick="Modal.studyString.show({ id: -1 })"
       >
         Import tree
+      </PrimaryButton>
+      <PrimaryButton
+        class="o-primary-btn--subtab-option"
+        @click="autoImportTree"
+      >
+        Auto-import
       </PrimaryButton>
     </div>
     <div
