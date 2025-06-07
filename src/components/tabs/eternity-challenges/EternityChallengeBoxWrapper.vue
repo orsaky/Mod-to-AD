@@ -36,6 +36,10 @@ export default {
       required: false,
       default: "",
     },
+    compactMode: {
+      type: Boolean,
+      default: false
+    },
   },
   data() {
     return {
@@ -91,7 +95,7 @@ export default {
 </script>
 
 <template>
-  <div class="c-challenge-box l-challenge-box c-challenge-box--eternity">
+  <div :class="['c-challenge-box l-challenge-box c-challenge-box--eternity', { compact: compactMode }]">
     <HintText
       type="challenges"
       class="l-hint-text--challenge"
@@ -114,5 +118,9 @@ export default {
 </template>
 
 <style scoped>
-
+.c-challenge-box.compact {
+  width: 160px;
+  max-height: 60px;
+  padding: 0.5rem;
+}
 </style>

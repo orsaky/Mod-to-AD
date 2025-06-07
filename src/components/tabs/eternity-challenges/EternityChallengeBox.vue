@@ -27,6 +27,7 @@ export default {
       completions: 0,
       showGoalSpan: false,
       lastGoal: "",
+      compactECLocal: player.options.compactEC,
     };
   },
   computed: {
@@ -64,6 +65,9 @@ export default {
     },
     name() {
       return `EC${this.challenge.id}`;
+    },
+    compactEC() {
+      return this.compactECLocal;
     }
   },
   methods: {
@@ -75,6 +79,7 @@ export default {
       this.completions = challenge.completions;
       this.showGoalSpan = PlayerProgress.realityUnlocked();
       this.canBeUnlocked = TimeStudy.eternityChallenge(challenge.id).canBeBought;
+      this.compactECLocal = player.options.compactEC;
 
       this.lastGoal = (Enslaved.isRunning && this.challenge.id === 1)
         ? wordShift.wordCycle(this.config.scrambleText.map(x => format(x)))
@@ -100,45 +105,53 @@ export default {
     :is-completed="isCompleted"
     :can-be-unlocked="canBeUnlocked"
     :completion-count="completions"
+    :compact-mode="compactEC"
     @start="start"
   >
     <template #top>
-      <DescriptionDisplay :config="config" />
+      <DescriptionDisplay v-if="!compactEC" :config="config" />
     </template>
+
     <template #bottom>
-      <div :style="{ visiblity: completions < 5 ? 'visible' : 'hidden' }">
+      <div :style="{ visibility: completions < 5 ? 'visible' : 'hidden' }">
         <div>
           Completed {{ quantifyInt("time", completions) }}
         </div>
-        {{ goalDisplay }}
       </div>
-      <span v-if="showGoalSpan">
-        Goal Span: {{ firstGoal }} IP - {{ lastGoal }} IP
-      </span>
-      <span>
-        Reward:
-        <DescriptionDisplay
-          :config="config.reward"
-          :length="55"
-          name="c-challenge-box__reward-description"
-        />
-      </span>
-      <span>
-        <EffectDisplay
-          v-if="completions > 0"
-          :config="currentRewardConfig"
-        />
-        <span v-if="completions > 0 && completions < 5">|</span>
-        <EffectDisplay
-          v-if="completions < 5"
-          :config="nextRewardConfig"
-          label="Next"
-          :ignore-capped="true"
-        />
-      </span>
+      <template v-if="!compactEC">
+        <div :style="{ visibility: completions < 5 ? 'visible' : 'hidden' }">
+          
+          {{ goalDisplay }}
+        </div>
+        <span v-if="showGoalSpan">
+          Goal Span: {{ firstGoal }} IP - {{ lastGoal }} IP
+        </span>
+        <span>
+          Reward:
+          <DescriptionDisplay
+            :config="config.reward"
+            :length="55"
+            name="c-challenge-box__reward-description"
+          />
+        </span>
+        <span>
+          <EffectDisplay
+            v-if="completions > 0"
+            :config="currentRewardConfig"
+          />
+          <span v-if="completions > 0 && completions < 5">|</span>
+          <EffectDisplay
+            v-if="completions < 5"
+            :config="nextRewardConfig"
+            label="Next"
+            :ignore-capped="true"
+          />
+        </span>
+      </template>
     </template>
   </EternityChallengeBoxWrapper>
 </template>
+
 
 <style scoped>
 

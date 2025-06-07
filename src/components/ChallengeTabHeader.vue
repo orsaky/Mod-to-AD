@@ -16,6 +16,7 @@ export default {
       isAutoECVisible: false,
       showAllChallenges: false,
       autoEC: false,
+      compactEC: false,
     };
   },
   watch: {
@@ -28,6 +29,9 @@ export default {
     showAllChallenges(newValue) {
       player.options.showAllChallenges = newValue;
     },
+    compactEC(newValue) {
+      player.options.compactEC = newValue;
+    },
   },
   methods: {
     update() {
@@ -37,6 +41,7 @@ export default {
       this.isShowAllVisible = PlayerProgress.eternityUnlocked();
       this.isAutoECVisible = Perk.autocompleteEC1.canBeApplied;
       this.autoEC = player.reality.autoEC;
+      this.compactEC = player.options.compactEC;
     },
     restartChallenge() {
       const current = Player.anyChallenge;
@@ -62,6 +67,11 @@ export default {
         v-model="retryChallenge"
         class="o-primary-btn--subtab-option"
         label="Automatically retry challenges:"
+      />
+      <PrimaryToggleButton
+        v-model="compactEC"
+        class="o-primary-btn--subtab-option"
+        label="Compact Challenges:"
       />
       <PrimaryToggleButton
         v-if="isShowAllVisible"
