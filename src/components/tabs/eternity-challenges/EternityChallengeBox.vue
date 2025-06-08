@@ -134,14 +134,6 @@ export default {
   >
     <template #top>
       <DescriptionDisplay v-if="!compactEC" :config="config" />
-    </template>
-
-    <template #bottom>
-      <div :style="{ visibility: completions < 5 ? 'visible' : 'hidden' }">
-        <div>
-          Completed {{ quantifyInt("time", completions) }}
-        </div>
-      </div>
       <div v-if="hasRequirement" class="c-ec-requirement">
         <div v-if="reqconfig.secondary.path">
           Use only {{ reqconfig.secondary.path }} path
@@ -151,6 +143,14 @@ export default {
           {{ reqconfig.secondary.resource === "Tickspeed upgrades from Time Dimensions"
             ? "Tickspeed upgrades"
             : reqconfig.secondary.resource }}
+        </div>
+      </div>
+    </template>
+
+    <template #bottom>
+      <div :style="{ visibility: completions < 5 ? 'visible' : 'hidden' }">
+        <div>
+          Completed {{ quantifyInt("time", completions) }}
         </div>
       </div>
       <template v-if="!compactEC">
