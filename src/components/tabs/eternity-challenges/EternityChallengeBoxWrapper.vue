@@ -120,7 +120,7 @@ export default {
 <style scoped>
 .c-challenge-box.compact {
   width: 160px;
-  max-height: 60px;
+  max-height: 90px;
   padding: 0.5rem;
 }
 </style>

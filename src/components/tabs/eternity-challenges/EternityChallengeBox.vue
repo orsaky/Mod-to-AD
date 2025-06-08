@@ -26,8 +26,13 @@ export default {
       canBeUnlocked: false,
       completions: 0,
       showGoalSpan: false,
+      hasRequirement: false,
       lastGoal: "",
       compactECLocal: player.options.compactEC,
+      requirement: {
+        current: new Decimal(),
+        total: new Decimal()
+      },
     };
   },
   computed: {
@@ -68,7 +73,16 @@ export default {
     },
     compactEC() {
       return this.compactECLocal;
-    }
+    },
+    hasNumberRequirement() {
+      return typeof TimeStudy.eternityChallenge(this.challenge.id).requirementTotal === "number";
+    },
+    reqconfig() {
+      return TimeStudy.eternityChallenge(this.challenge.id).config;
+    },
+    formatValue() {
+      return this.reqconfig.secondary.formatValue;
+    },
   },
   methods: {
     update() {
@@ -79,11 +93,21 @@ export default {
       this.completions = challenge.completions;
       this.showGoalSpan = PlayerProgress.realityUnlocked();
       this.canBeUnlocked = TimeStudy.eternityChallenge(challenge.id).canBeBought;
+      const study = TimeStudy.eternityChallenge(challenge.id);
       this.compactECLocal = player.options.compactEC;
-
+      this.hasRequirement = !Perk.studyECRequirement.isBought && !study.wasRequirementPreviouslyMet;
       this.lastGoal = (Enslaved.isRunning && this.challenge.id === 1)
         ? wordShift.wordCycle(this.config.scrambleText.map(x => format(x)))
         : this.goalAtCompletions(this.challenge.maxCompletions - 1);
+      if (!this.hasRequirement || this.challenge.id > 10) return;
+      const requirement = this.requirement;
+      if (this.hasNumberRequirement) {
+        requirement.total = study.requirementTotal;
+        requirement.current = Math.min(study.requirementCurrent, requirement.total);
+      } else {
+        requirement.total.copyFrom(study.requirementTotal);
+        requirement.current.copyFrom(study.requirementCurrent.min(requirement.total));
+      }
     },
     start() {
       if (this.canBeUnlocked) {
@@ -116,6 +140,17 @@ export default {
       <div :style="{ visibility: completions < 5 ? 'visible' : 'hidden' }">
         <div>
           Completed {{ quantifyInt("time", completions) }}
+        </div>
+      </div>
+      <div v-if="hasRequirement" class="c-ec-requirement">
+        <div v-if="reqconfig.secondary.path">
+          Use only {{ reqconfig.secondary.path }} path
+        </div>
+        <div v-else>
+          {{ formatValue(requirement.current) }}/{{ formatValue(requirement.total) }}
+          {{ reqconfig.secondary.resource === "Tickspeed upgrades from Time Dimensions"
+            ? "Tickspeed upgrades"
+            : reqconfig.secondary.resource }}
         </div>
       </div>
       <template v-if="!compactEC">
