@@ -239,7 +239,7 @@ export const GlyphGenerator = {
     const random1 = rng.uniform();
     const random2 = rng.uniform();
     if (type !== "effarig" && Ra.unlocks.glyphEffectCount.canBeApplied) return 4;
-    const maxEffects = Ra.unlocks.glyphEffectCount.canBeApplied ? 7 : 4;
+    const maxEffects = type === "effarig" ? 7 : 4;
     let num = Math.min(
       maxEffects,
       Math.floor(Math.pow(random1, 1 - (Math.pow(level * strength, 0.5)) / 100) * 1.5 + 1)+1
