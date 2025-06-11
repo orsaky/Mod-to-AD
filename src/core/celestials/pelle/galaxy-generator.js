@@ -32,7 +32,7 @@ export const GalaxyGenerator = {
       GalaxyGeneratorUpgrades.antimatterMult,
       GalaxyGeneratorUpgrades.IPMult,
       GalaxyGeneratorUpgrades.EPMult,
-    ).toNumber();
+    ).times(3).times(Math.pow(1.1, player.records.fullGameCompletions)).toNumber();
   },
 
   get capObj() {
