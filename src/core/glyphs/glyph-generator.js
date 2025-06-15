@@ -244,6 +244,9 @@ export const GlyphGenerator = {
       maxEffects,
       Math.floor(Math.pow(random1, 1 - (Math.pow(level * strength, 0.5)) / 100) * 1.5 + 1)+1
     );
+    if(player.records.fullGameCompletions > 5){
+      num = maxEffects;
+    }
     // If we do decide to add anything else that boosts chance of an extra effect, keeping the code like this
     // makes it easier to do (add it to the Effects.max).
     if (RealityUpgrade(17).isBought && random2 < Effects.max(0, RealityUpgrade(17))) {
