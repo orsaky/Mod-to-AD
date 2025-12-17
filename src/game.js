@@ -476,6 +476,19 @@ export function gameLoop(passDiff, options = {}) {
     diff = Enslaved.nextTickDiff;
   }
 
+  if (player.maxToggle) {
+    maxAll();
+  }
+  if (player.galaxyToggle) {
+    manualRequestGalaxyReset(true);
+  }
+  if (player.dimboostToggle) {
+    manualRequestDimensionBoost(true);
+  }
+  if (player.crunchToggle) {
+    manualBigCrunchResetRequest();
+  }
+
   Autobuyers.tick();
   Tutorial.tutorialLoop();
 
