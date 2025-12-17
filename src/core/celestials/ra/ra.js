@@ -139,7 +139,7 @@ class RaPetState extends GameMechanicState {
   }
 
   get memoryUpgradeCurrentMult() {
-    return Math.pow(1.3, this.data.memoryUpgrades);
+    return Math.pow(1.3, this.data.memoryUpgrades) * Math.pow(1.1, player.records.fullGameCompletions);
   }
 
   get chunkUpgradeCurrentMult() {

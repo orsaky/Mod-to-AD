@@ -479,6 +479,19 @@ export function gameLoop(passDiff, options = {}) {
   Autobuyers.tick();
   Tutorial.tutorialLoop();
 
+  if (player.maxToggle) {
+    maxAll();
+  }
+  if (player.galaxyToggle) {
+    manualRequestGalaxyReset(true);
+  }
+  if (player.dimboostToggle) {
+    manualRequestDimensionBoost(true);
+  }
+  if (player.crunchToggle) {
+    manualBigCrunchResetRequest();
+  }
+
   if (Achievement(165).isUnlocked && player.celestials.effarig.autoAdjustGlyphWeights) {
     autoAdjustGlyphWeights();
   }

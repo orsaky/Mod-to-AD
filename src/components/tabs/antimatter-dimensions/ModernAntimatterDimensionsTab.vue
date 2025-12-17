@@ -20,6 +20,10 @@ export default {
     return {
       hasDimensionBoosts: false,
       buyUntil10: true,
+      maxToggle: false,
+      galaxyToggle: false,
+      dimboostToggle: false,
+      crunchToggle: false,
       isSacrificeUnlocked: false,
       isSacrificeAffordable: false,
       buy10Mult: new Decimal(0),
@@ -68,6 +72,30 @@ export default {
         Laitela.setContinuum(true);
       }
     },
+    toggleMax() {
+      player.maxToggle = !player.maxToggle;
+    },
+    gettoggleMax() {
+      return this.maxToggle ? "Max On" : "Max Off";
+    },
+    toggleGalaxy() {
+      player.galaxyToggle = !player.galaxyToggle;
+    },
+    gettoggleGalaxy() {
+      return this.galaxyToggle ? "Galaxy On" : "Galaxy Off";
+    },
+    toggleDimboost() {
+      player.dimboostToggle = !player.dimboostToggle;
+    },
+    gettoggleDimboost() {
+      return this.dimboostToggle ? "Dimboost On" : "Dimboost Off";
+    },
+    toggleCrunch() {
+      player.crunchToggle = !player.crunchToggle;
+    },
+    gettoggleCrunch() {
+      return this.crunchToggle ? "Crunch On" : "Crunch Off";
+    },
     getUntil10Display() {
       if (this.isContinuumActive) return "Continuum";
       return this.buyUntil10 ? "Until 10" : "Buy 1";
@@ -75,6 +103,10 @@ export default {
     update() {
       this.hasDimensionBoosts = player.dimensionBoosts > 0;
       this.buyUntil10 = player.buyUntil10;
+      this.maxToggle = player.maxToggle;
+      this.crunchToggle = player.crunchToggle;
+      this.galaxyToggle = player.galaxyToggle;
+      this.dimboostToggle = player.dimboostToggle;
       this.hasContinuum = Laitela.continuumUnlocked;
       this.isContinuumActive = Laitela.continuumActive;
       this.isQuickResetAvailable = Player.isInAntimatterChallenge && Player.antimatterChallenge.isQuickResettable;
@@ -109,6 +141,18 @@ export default {
       >
         {{ getUntil10Display() }}
       </button>
+      <button
+        class="o-primary-btn l-button-container"
+        @click="toggleDimboost"
+      >
+        {{ gettoggleDimboost() }}
+      </button>
+      <button
+        class="o-primary-btn l-button-container"
+        @click="toggleGalaxy"
+      >
+        {{ gettoggleGalaxy() }}
+      </button>
       <PrimaryButton
         v-show="isSacrificeUnlocked"
         v-tooltip="sacrificeTooltip"
@@ -122,6 +166,18 @@ export default {
         </span>
         <span v-else>Dimensional Sacrifice Disabled ({{ disabledCondition }})</span>
       </PrimaryButton>
+      <button
+        class="o-primary-btn l-button-container"
+        @click="toggleMax"
+      >
+        {{ gettoggleMax() }}
+      </button>
+      <button
+        class="o-primary-btn l-button-container"
+        @click="toggleCrunch"
+      >
+        {{ gettoggleCrunch() }}
+      </button>
       <button
         class="o-primary-btn l-button-container"
         @click="maxAll"

@@ -30,6 +30,10 @@ window.player = {
     }))
   },
   buyUntil10: true,
+  maxToggle: false,
+  galaxyToggle: false,
+  crunchToggle: false,
+  dimboostToggle: false,
   sacrificed: DC.D0,
   achievementBits: Array.repeat(0, 17),
   secretAchievementBits: Array.repeat(0, 4),
