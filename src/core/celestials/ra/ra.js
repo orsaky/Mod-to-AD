@@ -377,7 +377,7 @@ export const Ra = {
   },
   get momentumValue() {
     const hoursFromUnlock = TimeSpan.fromMilliseconds(player.celestials.ra.momentumTime).totalHours;
-    return Math.clampMax(1 + (0.005*Math.pow(1.1, player.records.fullGameCompletions)*2)  * hoursFromUnlock, AlchemyResource.momentum.effectValue);
+    return Math.clampMax(1 + (0.005*Math.pow(1.1, player.records.fullGameCompletions) * 3 *2)  * hoursFromUnlock, AlchemyResource.momentum.effectValue);
   },
   quotes: Quotes.ra,
   symbol: "<i class='fas fa-sun'></i>"

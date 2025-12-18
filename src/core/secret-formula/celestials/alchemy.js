@@ -234,7 +234,7 @@ export const alchemyResources = {
     unlockedAt: 15,
     description: "provides a power to all Dimensions that permanently grows over time",
     formatEffect: value => `All Dimensions ${formatPow(Ra.momentumValue, 4, 4)}, increasing by
-      ${format(0.005 * Math.pow(1.1, player.records.fullGameCompletions) * 2 * Achievement(175).effectOrDefault(1), 3, 3)}
+      ${format(0.005 * Math.pow(1.1, player.records.fullGameCompletions) * 3 * 2 * Achievement(175).effectOrDefault(1), 3, 3)}
       per real-time hour after the resource is unlocked, up to a maximum of ${formatPow(value, 4, 4)}`,
     reagents: [
       {
