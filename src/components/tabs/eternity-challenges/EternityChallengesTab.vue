@@ -63,7 +63,7 @@ export default {
         this.untilNextEC.setFrom(untilNextEC);
         this.untilAllEC.setFrom(untilNextEC + (autoECInterval * (remainingCompletions - 1)));
       }
-      this.hasECR = Perk.studyECRequirement.isBought;
+      this.hasECR = Perk.studyECRequirement.isBought || player.records.fullGameCompletions >= 1;
     },
     isChallengeVisible(challenge) {
       return challenge.completions > 0 || challenge.isUnlocked || challenge.hasUnlocked ||

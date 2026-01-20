@@ -95,7 +95,7 @@ export default {
       this.canBeUnlocked = TimeStudy.eternityChallenge(challenge.id).canBeBought;
       const study = TimeStudy.eternityChallenge(challenge.id);
       this.compactECLocal = player.options.compactEC;
-      this.hasRequirement = !Perk.studyECRequirement.isBought && !study.wasRequirementPreviouslyMet;
+      this.hasRequirement = !Perk.studyECRequirement.isBought && !study.wasRequirementPreviouslyMet && !player.records.fullGameCompletions >= 1;
       this.lastGoal = (Enslaved.isRunning && this.challenge.id === 1)
         ? wordShift.wordCycle(this.config.scrambleText.map(x => format(x)))
         : this.goalAtCompletions(this.challenge.maxCompletions - 1);
