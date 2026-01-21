@@ -198,7 +198,7 @@ class AlchemyReaction {
   }
 
   get reactionEfficiency() {
-    return this.isReality ? 1 : AlchemyResource.synergism.effectValue;
+    return this.isReality ? 1 : AlchemyResource.synergism.effectValue + (player.records.fullGameCompletions * .1);
   }
 
   get reactionProduction() {
