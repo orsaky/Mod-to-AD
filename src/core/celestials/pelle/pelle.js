@@ -292,7 +292,7 @@ export const Pelle = {
 
     const gain = ((
       (Math.log10(am + 2) + Math.log10(ip + 2) + Math.log10(ep + 2)) / 1.64
-    ) ** 7.5)*(3+(0.1*player.records.fullGameCompletions));
+    ) ** 7.5)*(3+(0.2*player.records.fullGameCompletions));
 
     return gain < 1 ? gain : Math.floor(gain - this.cel.remnants);
   },
